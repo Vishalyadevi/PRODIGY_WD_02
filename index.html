@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-stopwatch"></i>Stopwatch</h1>
+            <div class="header-controls">
+                <button class="btn-icon" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-icon" id="fullscreenBtn" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="btn-icon" id="soundToggle" title="Toggle Sound">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="stopwatch-container">
+                <div class="time-display">
+                    <div class="main-time" id="mainTime">00:00:00.000</div>
+                    <div class="time-format-selector">
+                        <button class="format-btn active" data-format="ms">Milliseconds</button>
+                        <button class="format-btn" data-format="cs">Centiseconds</button>
+                        <button class="format-btn" data-format="s">Seconds</button>
+                    </div>
+                </div>
+
+                <div class="split-time-display" id="splitTimeDisplay">
+                    <div class="split-label">Split Time:</div>
+                    <div class="split-time" id="splitTime">00:00:00.000</div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" id="startStopBtn">
+                        <i class="fas fa-play"></i>
+                        <span>Start</span>
+                    </button>
+                    <button class="btn btn-secondary" id="lapSplitBtn" disabled>
+                        <i class="fas fa-flag"></i>
+                        <span>Lap</span>
+                    </button>
+                    <button class="btn btn-danger" id="resetBtn" disabled>
+                        <i class="fas fa-redo"></i>
+                        <span>Reset</span>
+                    </button>
+                </div>
+
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="lap">
+                        <i class="fas fa-flag"></i>
+                        Lap Mode
+                    </button>
+                    <button class="mode-btn" data-mode="split">
+                        <i class="fas fa-cut"></i>
+                        Split Mode
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div class="results-header">
+                    <h3 id="resultsTitle">Lap Times</h3>
+                    <div class="results-controls">
+                        <button class="btn-small" id="exportBtn" disabled>
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                        <button class="btn-small" id="clearBtn" disabled>
+                            <i class="fas fa-trash"></i>
+                            Clear
+                        </button>
+                    </div>
+                </div>
+                <div class="results-list" id="resultsList">
+                    <div class="no-results">
+                        <i class="fas fa-clock"></i>
+                        <p>No times recorded yet</p>
+                        <p class="hint">Start the stopwatch and press Lap to record times</p>
+                    </div>
+                </div>
+                <div class="results-stats" id="resultsStats"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="keyboard-shortcuts">
+                <span><kbd>Space</kbd> Start/Stop</span>
+                <span><kbd>L</kbd> Lap/Split</span>
+                <span><kbd>R</kbd> Reset</span>
+                <span><kbd>F</kbd> Fullscreen</span>
+                <span><kbd>T</kbd> Theme</span>
+            </div>
+        </footer>
+    </div>
+
+    <div class="progress-ring" id="progressRing">
+        <svg width="120" height="120">
+            <circle cx="60" cy="60" r="50" stroke-width="4" fill="none" stroke="#333" opacity="0.3"/>
+            <circle cx="60" cy="60" r="50" stroke-width="4" fill="none" stroke="url(#gradient)" 
+                    stroke-dasharray="314.16" stroke-dashoffset="314.16" 
+                    transform="rotate(-90 60 60)" id="progressCircle"/>
+            <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+        <div class="progress-time" id="progressTime">00:00</div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/stopwatch.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
